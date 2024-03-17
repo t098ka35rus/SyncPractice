@@ -6,8 +6,8 @@ public class Main {
     public static final Map<Integer, Integer> sizeToFreq = new HashMap<>();
 
     public static void main(String[] args) {
-        int maxKey = 0;
-        int maxValue = 0;
+        int maxKey;
+        int maxValue;
         int threads = 1000;
         //System.out.println("Поехали");
 

@@ -22,7 +22,7 @@ public class Main {
             myThread.start();
 
         }
-        maxKey = FindMaxKeyInMap(sizeToFreq);
+        maxKey = findMaxKeyInMap(sizeToFreq);
         maxValue = sizeToFreq.get(maxKey);
 
 
@@ -54,22 +54,24 @@ public class Main {
     public static void repRateToMap(String string) {
         int rep = 0;
         int count = 0;
+
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == 'R') {
+                rep++;
+            }
+        }
+
+        if (sizeToFreq.containsKey(rep)) {
+            count = sizeToFreq.get(rep) + 1;
+        } else {
+            count++;
+        }
         synchronized (sizeToFreq) {
-            for (int i = 0; i < string.length(); i++) {
-                if (string.charAt(i) == 'R') {
-                    rep++;
-                }
-            }
-            if (sizeToFreq.containsKey(rep)) {
-                count = sizeToFreq.get(rep) + 1;
-            } else {
-                count++;
-            }
             sizeToFreq.put(rep, count);
         }
     }
 
-    public static int FindMaxKeyInMap(Map<Integer, Integer> map) {
+    public static int findMaxKeyInMap(Map<Integer, Integer> map) {
         Optional<Map.Entry<Integer, Integer>> maxEntry = map.entrySet()
                 .stream()
                 .max(Comparator.comparing(Map.Entry::getValue));
